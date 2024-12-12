@@ -1,26 +1,22 @@
 version: 0.2
 
 phases:
-  # Pre-build phase: Install any additional tools if needed
-  pre_build:
+  install:
+    runtime-versions:
+      nodejs: 14
     commands:
       - echo Installing dependencies...
       - npm install
-
-  # Build phase: Build the React app
   build:
     commands:
-      - echo Building React app...
+      - echo Build started on `date`
       - npm run build
-
-  # Post-build phase: Any actions after the build (like cleaning up or copying files)
   post_build:
     commands:
-      - echo Build completed.
-      - echo Deploying to S3...
-      - aws s3 cp ./build/ s3://my-react-app-bucket1212/ --recursive --exclude "*.git/*"
+      - echo Build completed on `date`
+      - aws s3 sync ./build/ s3://my-react-app-bucket1212/ --delete
 
 artifacts:
   files:
     - '**/*'
-  base-directory: 'build'
+  base-directory: build
