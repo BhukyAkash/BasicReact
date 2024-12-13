@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learnt Deployment of CI/CD pipeline on AWS
+          Learnt 
         </a>
       </header>
     </div>
